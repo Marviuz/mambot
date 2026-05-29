@@ -1,4 +1,7 @@
 allowBuilds:
+  '@discordjs/opus': true
   bufferutil: true
   esbuild: true
   zlib-sync: true
+minimumReleaseAgeExclude:
+  - lint-staged@17.0.6

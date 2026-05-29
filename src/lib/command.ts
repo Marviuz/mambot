@@ -3,10 +3,15 @@ import {
   SlashCommandBuilder,
 } from 'discord.js';
 
-export type CommandOptions = {
+export type CommandName = string;
+export type CommandFn = (
+  interaction: ChatInputCommandInteraction,
+) => Promise<void>;
+
+type CommandOptions = {
   name: string;
   description: string;
-  execute: (interaction: ChatInputCommandInteraction) => Promise<void>;
+  execute: CommandFn;
 };
 
 export class Command extends SlashCommandBuilder {
