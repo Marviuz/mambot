@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { AudioPlayerStatus } from '@discordjs/voice';
 import { CronJob } from 'cron';
@@ -7,7 +8,11 @@ import { logger } from '@/utils/logger';
 
 const log = logger.child({ module: 'Mambo' });
 
-const MAMBO_PATH = path.resolve(process.cwd(), 'src/assets/audio/mambo.mp3');
+const MAMBO_PATH = path.resolve(process.cwd(), 'public/audio/mambo.mp3');
+
+if (!fs.existsSync(MAMBO_PATH)) {
+  throw new Error(`Mambo audio file not found at ${MAMBO_PATH}`);
+}
 
 class UnhandledError extends Error {
   readonly _tag = 'UnhandledError';
@@ -73,6 +78,10 @@ export class Mambo {
         player.stop();
         voiceControl.leave();
       }
+    });
+
+    player.player?.on('error', (playerError) => {
+      log.error(playerError);
     });
   }
 
