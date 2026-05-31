@@ -6,5 +6,6 @@ export const env = z
     DISCORD_BOT_TOKEN: z.string(),
     DISCORD_CLIENT_ID: z.string(),
     GUILD_ID: z.string(),
+    PORT: z.coerce.number().optional(),
   })
   .parse(process.env);
