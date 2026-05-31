@@ -1,6 +1,6 @@
 {
-  "name": "@marviuz/den-of-simps-discord-bot",
-  "version": "0.0.0",
+  "name": "mambot",
+  "version": "0.0.1",
   "description": "a discord bot",
   "main": "index.js",
   "type": "module",
